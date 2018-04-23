@@ -1,0 +1,48 @@
+<html lang="en">
+	<head>
+		<!-- <link rel="stylesheet" href="foundation.min.css"/>
+		<link rel="stylesheet" type="text/css"  href="css.css"/> -->
+		 <%= stylesheet_link_tag    'application', media: 'all'%>
+
+  		 <%= csrf_meta_tags %>
+  		 <link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+		
+		<div class="aside">
+			<div class="asideContent">
+			<% @networksUserCanGo.each do |network| %>
+				<div class="asideButtonBox activeAside">
+					<%= link_to(networks_path(:network => network)) do %>
+		  				<span class="icon-<%=network%> aside-internal-button"></span> 
+					<% end %>
+				</div>	
+			<% end %>
+			<div class="asideButtonBox">
+				<% if @networksUserCanAdd != [] %> 
+					<%= link_to(new_network_path(:zone => @currentZone)) do %>
+		  				<span class="icon-plus aside-internal-button"></span> 
+					<% end %>
+				<% end %>
+			</div>
+			<div class="asideButtonBox ">
+				<div  id="settingsbutton"class="icon-settings">
+					<ul id="settingsmenu"class="ul">
+						<li><%= current_user.username%></li>
+						<hr />
+						<li class="li"><%= link_to 'Edit profile', edit_user_registration_path %></li>
+						<li class="li"><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</div>
+	
+			<%= yield %>
+			
+			
+  		 <%= javascript_include_tag 'application', media: 'all'%>
+
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="/addnewzone.css">
+
+<div class="magicSentence">Sign up</h2>
+<center>
+    <%= devise_error_messages!%>
+    <div class="loginBox">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        
+        <div class="inputHead"><%= f.label :username%><br />
+        <%= f.text_field :username, autofocus: true, :class=>"inputText" %></div>
+        <div class="inputHead"><%= f.label :email %><br />
+        <%= f.email_field :email, :class=>"inputText" %></div>
+
+        <div class="inputHead"><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
+          <%= f.password_field :password, autocomplete: "off", :class=>"inputText" %></div>
+
+        <div class="inputHead"><%= f.label :password_confirmation, :class=>"inputHead" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off", :class=>"inputText" %></div>
+
+        <div><%= f.submit "Sign up", :class=>"submit" %></div>
+      <% end %>
+    </div>
+</center>

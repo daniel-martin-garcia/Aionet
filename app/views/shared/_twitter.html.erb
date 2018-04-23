@@ -1,0 +1,68 @@
+<section class="miniBox ">
+<div id="HTheader" class="miniboxHeader twitterHeader">
+<div class="boxtitle"> Twitter </div>
+<div class="icon-quill writeTweets"></div>
+<div id="tweetWritter" class="tweetwritter nodisplay">
+	<form class="formwritter">
+		<label class="labelwritter">Text:</label>
+		<textarea placeholder="Hmmm..?" maxlength=140 class="inputwritter" ></textarea>
+		<button class="buttonwritter"> Tweet </button>
+	</form>
+</div>
+</div>
+
+<div id="HTbody" class="miniboxBody scrollBar">
+
+<% @timeline.each do |tweet| %>
+	
+	<% if tweet.retweet? %>
+		
+		<div class="tweet hometimeline" id="<%=tweet.id%>" >
+			<div class="retweeter" >
+				@<%=tweet.user.user_name%> retweetted
+			</div>
+			<div class="tweetImageBox">
+				<%=image_tag src=tweet.retweeted_tweet.user.profile_image_url, :class => "tweetImage" %>
+			</div>
+			<div class="tweetBody">
+				<div class="tweetAuthor">
+					<%=tweet.retweeted_tweet.user.name%>
+					<div class="username"> 
+						@<%=tweet.retweeted_tweet.user.user_name%>
+					</div>
+				</div>
+				<div class="tweetBodyText">
+					<%=  tweet.text[2..-1]%>
+				</div>
+			</div>
+			<div class="tweetFooter">
+			</div>
+				
+		</div>
+		<hr>
+	<% else %>
+		<div class="tweet hometimeline" id="<%=tweet.id%>">
+			<div class="tweetImageBox">
+				<%=image_tag src=tweet.user.profile_image_url, :class => "tweetImage" %>
+			</div>
+			<div class="tweetBody">
+				<div class="tweetAuthor">
+					<%=tweet.user.name%>
+					<div class="username"> @<%=tweet.user.user_name%>
+					</div>
+				</div>
+				<div class="tweetBodyText">
+					<%=  tweet.text%>
+				</div>
+			</div>
+			<div class="tweetFooter">
+			</div>
+				
+		</div>
+		<hr>
+	<% end %>
+
+<% end %>
+	<div id="end" class="end"></div>
+	</div>
+		</section>
